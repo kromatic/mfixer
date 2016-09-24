@@ -3,6 +3,7 @@
 import os, sys
 from os.path import join
 from mutagen.easyid3 import EasyID3
+from mutagen.id3._util import ID3NoHeaderError
 
 def fix_string_encoding(s, source_enc, desired_enc):
     """Attempt to convert string s from source to desired encoding.
@@ -28,7 +29,7 @@ def fix_all(root, source_enc, desired_enc):
             # first fix ID3 metadata
             try:
                 metadata = EasyID3(join(path, file))
-            except mutagen.id3._util.ID3NoHeaderError:
+            except ID3NoHeaderError:
                 break
             for tag, values in metadata.items():
                 metadata[tag] = [fix_string_encoding(v, source_enc, desired_enc)
