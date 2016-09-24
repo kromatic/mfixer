@@ -26,7 +26,10 @@ def fix_all(root, source_enc, desired_enc):
             if file in removed:
                 continue
             # first fix ID3 metadata
-            metadata = EasyID3(join(path, file))
+            try:
+                metadata = EasyID3(join(path, file))
+            except mutagen.id3._util.ID3NoHeaderError:
+                break
             for tag, values in metadata.items():
                 metadata[tag] = [fix_string_encoding(v, source_enc, desired_enc)
                                  for v in values]
