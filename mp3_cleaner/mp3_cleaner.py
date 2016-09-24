@@ -14,6 +14,8 @@ def fix_string_encoding(s, source_enc, desired_enc):
     except:
         return s
 
+# testing
+
 def fix_all(root, source_enc, desired_enc):
     """Correct all names and metadata of files and folders and remove all
     duplicates in the directory tree rooted at root.
