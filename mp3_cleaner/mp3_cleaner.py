@@ -11,7 +11,7 @@ def fix_string_encoding(s, source_enc, desired_enc):
     """
     try:
         return s.encode(source_enc).decode(desired_enc)
-    except UnicodeEncodeError:
+    except:
         return s
 
 def fix_all(root, source_enc, desired_enc):
