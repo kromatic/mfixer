@@ -31,10 +31,14 @@ def fix_all(root, source_enc, desired_enc):
                 metadata[tag] = [fix_string_encoding(v, source_enc, desired_enc)
                                  for v in values]
             metadata.save()
-            print('Fixed metadata: {}'.format(file_))
+            print('Fixed metadata: {}'.format(file))
             # check for duplicates
+            title = metadata['title']
             for file_ in files:
-                if metadata['title'] == EasyID3(join(path, file_))['title']:
+                if file_ in removed or file_ == file:
+                    continue
+                title_ = EasyID3(join(path, file_))['title']
+                if title == title_:
                     os.remove(join(path, file_))
                     removed.add(file_)
                     print('Removed duplicate: {}'.format(file_))
