@@ -35,7 +35,7 @@ def fix_all(root, source_enc, desired_enc):
                 metadata[tag] = [fix_string_encoding(v, source_enc, desired_enc)
                                  for v in values]
             metadata.save()
-            print('Fixed metadata: {}'.format(file))
+            # print('Fixed metadata: {}'.format(file))
             # check for duplicates
             title = metadata['title']
             for file_ in files:
@@ -51,13 +51,13 @@ def fix_all(root, source_enc, desired_enc):
             # rename if the filename actually needed fixing
             if file_ != file:
                 os.rename(join(path, file), join(path, file_))
-                print('Renamed file: {} -> {}'.format(file, file_))
+                # print('Renamed file: {} -> {}'.format(file, file_))
         # finally fix folder names
         for dir in dirs:
             dir_ = fix_string_encoding(dir, source_enc, desired_enc)
             if dir_ != dir:
                 os.rename(join(path, dir), join(path, dir_))
-                print('Renamed directory: {} -> {}'.format(dir, dir_))
+                # print('Renamed directory: {} -> {}'.format(dir, dir_))
 
 if __name__ == '__main__':
     # parse command-line arguments
