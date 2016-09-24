@@ -22,7 +22,6 @@ def fix_all(root, source_enc, desired_enc):
           'desired encoding = {}):\n'.format(root, source_enc, desired_enc))
     # walk through directory
     for path, dirs, files in os.walk(root, topdown=False):
-        removed = set()  # keep track of removed duplicates
         for file in files:
             if file in removed:
                 continue
@@ -36,21 +35,14 @@ def fix_all(root, source_enc, desired_enc):
                                  for v in values]
             metadata.save()
             # print('Fixed metadata: {}'.format(file))
-            # check for duplicates
-            title = metadata['title']
-            for file_ in files:
-                if file_ in removed or file_ == file:
-                    continue
-                title_ = EasyID3(join(path, file_))['title']
-                if title == title_:
-                    os.remove(join(path, file_))
-                    removed.add(file_)
-                    print('Removed duplicate: {}'.format(file_))
             # fix filename
             file_ = fix_string_encoding(file, source_enc, desired_enc)
             # rename if the filename actually needed fixing
             if file_ != file:
-                os.rename(join(path, file), join(path, file_))
+                if file_ in files:
+                    os.remove(join(path, file))
+                else:
+                    os.rename(join(path, file), join(path, file_))
                 # print('Renamed file: {} -> {}'.format(file, file_))
         # finally fix folder names
         for dir in dirs:
