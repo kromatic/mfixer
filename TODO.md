@@ -1,4 +1,5 @@
 - Add the ability to remove all duplicates (not just ones with corrupt encoding) based on song title in metadata
 - Handle other music formats
+- Create a sample with corrupt metadata in addition to corrupt filenames
 - Work with a copy of the music directory instead of original files
 - Add gui
