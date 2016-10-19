@@ -47,8 +47,9 @@ def fix_all(root, source_enc, desired_enc):
         # finally fix folder names
         for dir in dirs:
             dir_ = fix_string_encoding(dir, source_enc, desired_enc)
-            if dir_ != dir:
+            if dir_ != dir and dir_ not in dirs:
                 os.rename(join(path, dir), join(path, dir_))
+                # fails to handle duplicate directories
                 # print('Renamed directory: {} -> {}'.format(dir, dir_))
 
 if __name__ == '__main__':
