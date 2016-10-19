@@ -1,2 +1,4 @@
-- Add the ability to remove all duplicates
+- Add the ability to remove all duplicates (not just ones with corrupt encoding) based on song title in metadata
 - Handle other music formats
+- Work with a copy of the music directory instead of original files
+- Add gui

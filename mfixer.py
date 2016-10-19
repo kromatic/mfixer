@@ -21,7 +21,7 @@ def fix_all(root, source_enc, desired_enc):
     duplicates in the directory tree rooted at root.
     """
     print('Fixing music files in {} (source encoding = {}, '
-          'desired encoding = {}):\n'.format(root, source_enc, desired_enc))
+          'desired encoding = {})...\n'.format(root, source_enc, desired_enc))
     # walk through directory
     for path, dirs, files in os.walk(root, topdown=False):
         for file in files:
