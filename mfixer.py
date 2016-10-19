@@ -25,8 +25,6 @@ def fix_all(root, source_enc, desired_enc):
     # walk through directory
     for path, dirs, files in os.walk(root, topdown=False):
         for file in files:
-            if file in removed:
-                continue
             # first fix ID3 metadata
             try:
                 metadata = EasyID3(join(path, file))

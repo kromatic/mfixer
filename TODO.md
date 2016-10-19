@@ -1,0 +1,2 @@
+- Add the ability to remove duplicates
+- Handle other music formats
